@@ -1,0 +1,67 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+### NoDocs ###
+GET     /                           controllers.HomeController.index()
+
+###
+#   responses:
+#     200:
+#       schema:
+#         $ref: '#/definitions/models.Message'
+###
+GET     /api/v1/messages            controllers.MessageController.getAll
+
+###
+#   responses:
+#     200:
+#       schema:
+#         $ref: '#/definitions/models.Message'
+#     404:
+#       description: Message with specified ID was not found
+###
+GET     /api/v1/messages/:id        controllers.MessageController.getById(id: Long)
+
+###
+#   requestBody:
+#     content:
+#       application/json:
+#         schema:
+#           type: object
+#           $ref: "#/definitions/dtos.NewMessage"
+#   responses:
+#     200:
+#       schema:
+#         $ref: '#/definitions/models.Message'
+###
+POST    /api/v1/messages            controllers.MessageController.create
+
+
+###
+#   responses:
+#     204:
+#       description: Message with specified id has been deleted
+#     404:
+#       description: Message with specified ID was not found
+###
+DELETE  /api/v1/messages/:id        controllers.MessageController.delete(id: Long)
+
+###
+#   requestBody:
+#     content:
+#       application/json:
+#         schema:
+#           type: object
+#           $ref: "#/definitions/models.Message"
+#   responses:
+#     200:
+#       schema:
+#         $ref: '#/definitions/models.Message'
+###
+PUT     /api/v1/messages/:id        controllers.MessageController.update(id: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+### NoDocs ###
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
