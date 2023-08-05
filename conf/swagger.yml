@@ -3,3 +3,9 @@ openapi: "3.0.3"
 info:
   title: "Play-Slick-PostgreSQL"
   description: "Example usage"
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

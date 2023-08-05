@@ -35,6 +35,10 @@ GET     /api/v1/messages/:id        controllers.MessageController.getById(id: Lo
 #     200:
 #       schema:
 #         $ref: '#/definitions/models.Message'
+#     401:
+#       description: Authentication information is missing or invalid
+#   security:
+#     - basicAuth: []
 ###
 POST    /api/v1/messages            controllers.MessageController.create
 
@@ -43,8 +47,12 @@ POST    /api/v1/messages            controllers.MessageController.create
 #   responses:
 #     204:
 #       description: Message with specified id has been deleted
+#     401:
+#       description: Authentication information is missing or invalid
 #     404:
 #       description: Message with specified ID was not found
+#   security:
+#     - basicAuth: []
 ###
 DELETE  /api/v1/messages/:id        controllers.MessageController.delete(id: Long)
 
@@ -59,6 +67,10 @@ DELETE  /api/v1/messages/:id        controllers.MessageController.delete(id: Lon
 #     200:
 #       schema:
 #         $ref: '#/definitions/models.Message'
+#     401:
+#       description: Authentication information is missing or invalid
+#   security:
+#     - basicAuth: []
 ###
 PUT     /api/v1/messages/:id        controllers.MessageController.update(id: Long)
 
